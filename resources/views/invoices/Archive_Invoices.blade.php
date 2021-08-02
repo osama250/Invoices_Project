@@ -36,7 +36,6 @@
                     type: "success"
                 })
             }
-
         </script>
     @endif
 
@@ -48,7 +47,6 @@
                     type: "success"
                 })
             }
-
         </script>
     @endif
 
@@ -84,11 +82,11 @@
                             </thead>
                             <tbody>
                                 @php
-                                $i = 0;
+                                    $i = 0;
                                 @endphp
                                 @foreach ($invoices as $invoice)
                                     @php
-                                    $i++
+                                        $i++;
                                     @endphp
                                     <tr>
                                         <td>{{ $i }}</td>
@@ -121,12 +119,14 @@
                                                     class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                                 <div class="dropdown-menu tx-13">
-                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
-                                                        data-toggle="modal" data-target="#Transfer_invoice"><i
+                                                    <a class="dropdown-item" href="#"
+                                                        data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
+                                                        data-target="#Transfer_invoice"><i
                                                             class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
                                                         الفواتير</a>
-                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
-                                                        data-toggle="modal" data-target="#delete_invoice"><i
+                                                    <a class="dropdown-item" href="#"
+                                                        data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
+                                                        data-target="#delete_invoice"><i
                                                             class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                                         الفاتورة</a>
                                                 </div>
@@ -155,7 +155,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('Archive.destroy', 'test') }}" method="post">
+                    <form action="{{ route('Archive_Invoice.destroy', 'test') }}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                 </div>
@@ -183,7 +183,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('Archive.update', 'test') }}" method="post">
+                    <form action="{{ route('Archive_Invoice.update', 'test') }}" method="post">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
                 </div>
@@ -239,7 +239,6 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
-
     </script>
 
     <script>
@@ -249,7 +248,6 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
-
     </script>
 
 @endsection

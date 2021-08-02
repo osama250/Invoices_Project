@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\attachement;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\invoice_attachments;
 
 class attachmentController extends Controller
@@ -35,6 +36,15 @@ class attachmentController extends Controller
 
             session()->flash('Add', 'تم اضافة المرفق بنجاح');
             return back();
+    }
+
+    public function destroy(Request $request)
+    {
+        $invoices = invoice_attachments::findOrFail($request->id_file);
+        $invoices->delete();
+        Storage::disk('public_uploads')->delete($request->invoice_number.'/'.$request->file_name);
+        session()->flash('delete', 'تم حذف المرفق بنجاح');
+        return back();
     }
 
 }

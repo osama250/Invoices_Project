@@ -155,7 +155,8 @@
                                                     {{-- @endcan --}}
 
                                                     {{-- @can('تغير حالة الدفع') --}}
-                                                    <a class="dropdown-item" href=""><i
+                                                    <a class="dropdown-item"
+                                                        href="{{ URL::route('Status_show', [$invoice->id]) }}"><i
                                                             class=" text-success fasfa-money-bill"></i>&nbsp;&nbsp;تغير
                                                         حالة
                                                         الدفع</a>
@@ -229,7 +230,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('Invoices.destroy', 'test') }}" method="post">
+                    <form action="{{ route('Invoice.destroy', 'test') }}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                 </div>
@@ -237,7 +238,7 @@
                     هل انت متاكد من عملية الارشفة ؟
                     <input type="hidden" name="invoice_id" id="invoice_id" value="">
                     <input type="hidden" name="id_page" id="id_page" value="2">
-
+                    {{-- id_page to use archive --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>

@@ -37,7 +37,6 @@
                     type: "success"
                 })
             }
-
         </script>
     @endif
 
@@ -50,7 +49,6 @@
                     type: "success"
                 })
             }
-
         </script>
     @endif
 
@@ -87,11 +85,11 @@
                             </thead>
                             <tbody>
                                 @php
-                                $i = 0;
+                                    $i = 0;
                                 @endphp
                                 @foreach ($invoices as $invoice)
                                     @php
-                                    $i++
+                                        $i++;
                                     @endphp
                                     <tr>
                                         <td>{{ $i }}</td>
@@ -128,20 +126,22 @@
                                                         href=" {{ url('edit_invoice') }}/{{ $invoice->id }}">تعديل
                                                         الفاتورة</a>
 
-                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
-                                                        data-toggle="modal" data-target="#delete_invoice"><i
+                                                    <a class="dropdown-item" href="#"
+                                                        data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
+                                                        data-target="#delete_invoice"><i
                                                             class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                                         الفاتورة</a>
 
                                                     <a class="dropdown-item"
                                                         href="{{ URL::route('Status_show', [$invoice->id]) }}"><i
                                                             class=" text-success fas
-                                                                                                                                    fa-money-bill"></i>&nbsp;&nbsp;تغير
+                                                                                                                                                fa-money-bill"></i>&nbsp;&nbsp;تغير
                                                         حالة
                                                         الدفع</a>
 
-                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
-                                                        data-toggle="modal" data-target="#Transfer_invoice"><i
+                                                    <a class="dropdown-item" href="#"
+                                                        data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
+                                                        data-target="#Transfer_invoice"><i
                                                             class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
                                                         الارشيف</a>
 
@@ -171,7 +171,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('invoices.destroy', 'test') }}" method="post">
+                    <form action="{{ route('Invoice.destroy', 'test') }}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                 </div>
@@ -199,7 +199,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('invoices.destroy', 'test') }}" method="post">
+                    <form action="{{ route('Invoice.destroy', 'test') }}" method="post">
                         {{ method_field('delete') }}
                         {{ csrf_field() }}
                 </div>
@@ -256,7 +256,6 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
-
     </script>
 
     <script>
@@ -266,7 +265,6 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
-
     </script>
 
 

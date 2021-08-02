@@ -72,7 +72,7 @@ class InvoiceController extends Controller
         }
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
-        return back();
+        return redirect('/Invoices');
     }
 
     public function show($id)
@@ -82,6 +82,59 @@ class InvoiceController extends Controller
         $attachments  = invoice_attachments::where('invoice_id',$id)->get();
 
         return view('invoices.details_invoice', compact('invoices','details','attachments'));
+    }
+
+    public function Status($id)
+    {
+        $invoices = invoice::where('id', $id)->first();
+        return view('invoices.status_update', compact('invoices'));
+    }
+
+    public function Status_Update(Request $request , $id )
+    {
+        $invoices = invoice::findOrFail($id);
+
+        if ($request->Status === 'مدفوعة') {
+
+            $invoices->update([
+                'Value_Status'  => 1,
+                'Status'        => $request->Status,
+                'Payment_Date'  => $request->Payment_Date,
+            ]);
+
+            invoice_Details::create([
+                'id_Invoice'        => $request->invoice_id,
+                'invoice_number'    => $request->invoice_number,
+                'product'           => $request->product,
+                'Section'           => $request->Section,
+                'Status'            => $request->Status,
+                'Value_Status'      => 1,
+                'note'              => $request->note,
+                'Payment_Date'      => $request->Payment_Date,
+                'user'              => (Auth::user()->name),
+            ]);
+        }
+
+        else {
+            $invoices->update([
+                'Value_Status'  => 3,
+                'Status'        => $request->Status,
+                'Payment_Date'  => $request->Payment_Date,
+            ]);
+            invoice_Details::create([
+                'id_Invoice'        => $request->invoice_id,
+                'invoice_number'    => $request->invoice_number,
+                'product'           => $request->product,
+                'Section'           => $request->Section,
+                'Status'            => $request->Status,
+                'Value_Status'      => 3,
+                'note'              => $request->note,
+                'Payment_Date'      => $request->Payment_Date,
+                'user'              => (Auth::user()->name),
+            ]);
+        }
+        session()->flash('Status_Update');
+        return redirect('/Invoices');
     }
 
     public function edit($id)
@@ -116,11 +169,31 @@ class InvoiceController extends Controller
 
     public function destroy(Request $request)
     {
-        $invoices = invoice_attachments::findOrFail($request->id_file);
-        $invoices->delete();
-        Storage::disk('public_uploads')->delete($request->invoice_number.'/'.$request->file_name);
-        session()->flash('delete', 'تم حذف المرفق بنجاح');
-        return back();
+        // return $request;
+        $id             = $request->invoice_id;
+        $invoices       = invoice::where('id', $id)->first();
+        $Details        = invoice_attachments::where('invoice_id', $id)->first();
+
+            $id_page = $request->id_page;  //  when choose archive
+
+        if (!$id_page==2) {
+
+            if (!empty($Details->invoice_number)) {
+
+                Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
+            }
+
+            $invoices->forceDelete();            //  here delete forever
+            session()->flash('delete_invoice');
+            return redirect('/Invoices');
+        }
+
+        else {
+
+            $invoices->delete();             // here use softdelete
+            session()->flash('archive_invoice');
+            return redirect('/Archive_Invoice');
+        }
     }
 
     public function getproducts($id)

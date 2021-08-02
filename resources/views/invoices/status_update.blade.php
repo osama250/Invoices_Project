@@ -129,7 +129,7 @@
                             <div class="col">
                                 <label for="exampleTextarea">ملاحظات</label>
                                 <textarea class="form-control" id="exampleTextarea" name="note" rows="3" readonly>
-                                {{ $invoices->note }}</textarea>
+                                                    {{ $invoices->note }}</textarea>
                             </div>
                         </div><br>
 
@@ -188,6 +188,5 @@
         var date = $('.fc-datepicker').datepicker({
             dateFormat: 'yy-mm-dd'
         }).val();
-
     </script>
 @endsection
