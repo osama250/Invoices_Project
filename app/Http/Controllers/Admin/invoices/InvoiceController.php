@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\invoice;
 use App\Models\invoice_details;
 use App\Models\invoice_attachments;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\AddInvoice;
+
 
 class InvoiceController extends Controller
 {
@@ -70,6 +74,10 @@ class InvoiceController extends Controller
             $imageName = $request->pic->getClientOriginalName();
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
+
+        // send to mail
+        $user     = User::first();
+        Notification::send($user, new AddInvoice($invoice_id));
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return redirect('/Invoices');
