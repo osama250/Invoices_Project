@@ -30,6 +30,7 @@
     <div class="row row-sm">
         <div class="col-md-12 col-xl-12">
             <div class=" main-content-body-invoice" id="print">
+                <!--   use this id to print   -->
                 <div class="card card-invoice">
                     <div class="card-body">
                         <div class="invoice-header">
@@ -54,13 +55,17 @@
                             <div class="col-md">
                                 <label class="tx-gray-600">معلومات الفاتورة</label>
                                 <p class="invoice-info-row"><span>رقم الفاتورة</span>
-                                    <span>{{ $invoices->invoice_number }}</span></p>
+                                    <span>{{ $invoices->invoice_number }}</span>
+                                </p>
                                 <p class="invoice-info-row"><span>تاريخ الاصدار</span>
-                                    <span>{{ $invoices->invoice_Date }}</span></p>
+                                    <span>{{ $invoices->invoice_Date }}</span>
+                                </p>
                                 <p class="invoice-info-row"><span>تاريخ الاستحقاق</span>
-                                    <span>{{ $invoices->Due_date }}</span></p>
+                                    <span>{{ $invoices->Due_date }}</span>
+                                </p>
                                 <p class="invoice-info-row"><span>القسم</span>
-                                    <span>{{ $invoices->section->section_name }}</span></p>
+                                    <span>{{ $invoices->section->section_name }}</span>
+                                </p>
                             </div>
                         </div>
                         <div class="table-responsive mg-t-40">
@@ -81,7 +86,7 @@
                                         <td class="tx-center">{{ number_format($invoices->Amount_collection, 2) }}</td>
                                         <td class="tx-right">{{ number_format($invoices->Amount_Commission, 2) }}</td>
                                         @php
-                                        $total = $invoices->Amount_collection + $invoices->Amount_Commission ;
+                                            $total = $invoices->Amount_collection + $invoices->Amount_Commission;
                                         @endphp
                                         <td class="tx-right">
                                             {{ number_format($total, 2) }}
@@ -104,7 +109,8 @@
                                     </tr>
                                     <tr>
                                         <td class="tx-right">قيمة الخصم</td>
-                                        <td class="tx-right" colspan="2"> {{ number_format($invoices->Discount, 2) }}</td>
+                                        <td class="tx-right" colspan="2"> {{ number_format($invoices->Discount, 2) }}
+                                        </td>
 
                                     </tr>
                                     <tr>
@@ -117,9 +123,6 @@
                             </table>
                         </div>
                         <hr class="mg-b-40">
-
-
-
                         <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i
                                 class="mdi mdi-printer ml-1"></i>طباعة</button>
                     </div>
@@ -147,7 +150,6 @@
             document.body.innerHTML = originalContents;
             location.reload();
         }
-
     </script>
 
 @endsection

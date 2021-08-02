@@ -30,6 +30,7 @@ Route::group([ 'namespace' => 'Admin'  ] , function () {
     Route::get('/edit_invoice/{id}', 'invoices\InvoiceController@edit');
     Route::get('/Status_show/{id}', 'invoices\InvoiceController@Status')->name('Status_show');
     Route::post('/Status_Update/{id}', 'invoices\InvoiceController@Status_Update')->name('Status_Update');
+    Route::get('Print_invoice/{id}','invoices\InvoiceController@Print_invoice');
     // Archive
     Route::resource('Archive_Invoice', 'invoices\invoicesArchiveController');
 

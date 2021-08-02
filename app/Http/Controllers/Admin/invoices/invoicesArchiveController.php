@@ -14,26 +14,6 @@ class invoicesArchiveController extends Controller
         return view('Invoices.Archive_Invoices',compact('invoices'));
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
     public function update(Request $request)
     {
         $id         = $request->invoice_id;

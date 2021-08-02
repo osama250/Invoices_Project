@@ -189,11 +189,16 @@ class InvoiceController extends Controller
         }
 
         else {
-
             $invoices->delete();             // here use softdelete
             session()->flash('archive_invoice');
             return redirect('/Archive_Invoice');
         }
+    }
+
+    public function Print_invoice($id)
+    {
+        $invoices = invoice::where('id', $id)->first();
+        return view('invoices.Print_invoice',compact('invoices'));
     }
 
     public function getproducts($id)
