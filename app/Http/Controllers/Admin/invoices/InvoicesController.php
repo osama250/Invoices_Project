@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\invoices;
 
 use App\Http\Controllers\Controller;
 use App\Models\invoice;
+use App\Exports\InvociesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InvoicesController extends Controller
 {
@@ -30,5 +32,11 @@ class InvoicesController extends Controller
     {
         $invoices = Invoice::where('Value_Status',3)->get();
         return view('invoices.invoices_Partial',compact('invoices'));
+    }
+
+    public function export()
+    {
+        // echo 'Export';
+        return Excel::download(new InvociesExport, 'Invoces.xlsx');
     }
 }

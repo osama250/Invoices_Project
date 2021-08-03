@@ -22,6 +22,8 @@ Route::group([ 'namespace' => 'Admin'  ] , function () {
     Route::get('Invoice_Paid','invoices\InvoicesController@Invoice_Paid');
     Route::get('Invoice_UnPaid','invoices\InvoicesController@Invoice_UnPaid');
     Route::get('Invoice_Partial','invoices\InvoicesController@Invoice_Partial');
+    // export excel
+    Route::get('Invoices-Eport', 'invoices\InvoicesController@export');
     // Invoice
     Route::resource('Invoice', 'invoices\InvoiceController');
     Route::get('/InvoicesDetails/{id}', 'invoices\InvoiceController@show');
