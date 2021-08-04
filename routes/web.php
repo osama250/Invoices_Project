@@ -15,7 +15,7 @@ Auth::routes( ['register' => false] ); // to stop register
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group([ 'namespace' => 'Admin'  ] , function () {
+Route::group([ 'namespace' => 'Admin' , 'middleware' => ['auth']  ] , function () {
 
     // Invoices
     Route::resource('Invoices', 'invoices\InvoicesController');
@@ -36,8 +36,6 @@ Route::group([ 'namespace' => 'Admin'  ] , function () {
     // Archive
     Route::resource('Archive_Invoice', 'invoices\invoicesArchiveController');
 
-
-
     // add attachement
     Route::resource('InvoiceAttachments', 'attachement\attachmentController');
     Route::post('delete_file', 'attachement\attachmentController@destroy')->name('delete_file');
@@ -54,6 +52,12 @@ Route::group([ 'namespace' => 'Admin'  ] , function () {
     Route::resource('Prodcut',  'prodcuts\ProdcutController');
 
 
-    // Dashbord           Must Should Be Last
-    Route::get('/{page}', 'admin\AdminContrller@index');
+        // rules and permision
+        Route::resource('Roles','roles\RoleController');
+        Route::resource('Users','users\UserController');
+
 });
+
+
+// Dashbord           Must Should Be Last
+Route::get('/{page}', 'admin\AdminContrller@index');
