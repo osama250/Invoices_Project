@@ -43,9 +43,9 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="col-sm-1 col-md-2">
-                    {{-- @can('اضافة مستخدم') --}}
-                    <a class="btn btn-primary btn-sm" href="">اضافة مستخدم</a>
-                    {{-- @endcan --}}
+                    @can('اضافة مستخدم')
+                        <a class="btn btn-primary btn-sm" href="{{ route('Users.create') }}">اضافة مستخدم</a>
+                    @endcan
                 </div>
             </div>
             <div class="card-body">
@@ -83,25 +83,25 @@
                                     </td>
 
                                     <td>
-                                        {{-- @if (!empty($user->getRoleNames()))
+                                        @if (!empty($user->getRoleNames()))
                                             @foreach ($user->getRoleNames() as $v)
                                                 <label class="badge badge-success">{{ $v }}</label>
                                             @endforeach
-                                        @endif --}}
+                                        @endif
                                     </td>
 
                                     <td>
-                                        {{-- @can('تعديل مستخدم') --}}
-                                        <a href="" class="btn btn-sm btn-info" title="تعديل"><i
-                                                class="las la-pen"></i></a>
-                                        {{-- @endcan --}}
+                                        @can('تعديل مستخدم')
+                                            <a href="{{ route('Users.edit', $user->id) }}" class="btn btn-sm btn-info"
+                                                title="تعديل"><i class="las la-pen"></i></a>
+                                        @endcan
 
-                                        {{-- @can('حذف مستخدم') --}}
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                            data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                            data-toggle="modal" href="#modaldemo8" title="حذف"><i
-                                                class="las la-trash"></i></a>
-                                        {{-- @endcan --}}
+                                        @can('حذف مستخدم')
+                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
+                                                data-toggle="modal" href="#modaldemo8" title="حذف"><i
+                                                    class="las la-trash"></i></a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
@@ -121,7 +121,7 @@
                     <h6 class="modal-title">حذف المستخدم</h6><button aria-label="Close" class="close"
                         data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="" method="post">
+                <form action="{{ route('Users.destroy', 'test') }}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
                     <div class="modal-body">

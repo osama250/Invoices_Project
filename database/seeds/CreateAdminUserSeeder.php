@@ -17,9 +17,9 @@ public function run()
         'Status'        => 'مفعل',
         ]);
 
-        $role = Role::create(['name' => 'owner']);
+        $role          = Role::create(['name' => 'owner']);
 
-        $permissions = Permission::pluck('id','id')->all();
+        $permissions   = Permission::pluck('id','id')->all();
 
         $role->syncPermissions($permissions);
 
