@@ -10,8 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
-    public function index() {
-        // return 'done';
+    function __construct()
+    {
+        $this->middleware('permission:عرض صلاحية', ['only' => ['index']]);
+        $this->middleware('permission:اضافة صلاحية', ['only' => ['create','store']]);
+        $this->middleware('permission:تعديل صلاحية', ['only' => ['edit','update']]);
+        $this->middleware('permission:حذف صلاحية', ['only' => ['destroy']]);
+    }
+
+    public function index()
+    {
         $roles = Role::orderBy('id','DESC')->get();
         return view('roles.index',compact('roles'));
     }

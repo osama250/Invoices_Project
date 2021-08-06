@@ -43,11 +43,11 @@
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">رجوع</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('Users.index') }}">رجوع</a>
                     </div>
                 </div><br>
 
-                {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+                {!! Form::model($user, ['method' => 'PATCH','route' => ['Users.update', $user->id]]) !!}
                 <div class="">
 
                     <div class="row mg-b-20">
