@@ -51,10 +51,13 @@ Route::group([ 'namespace' => 'Admin' , 'middleware' => ['auth']  ] , function (
     Route::resource('Prodcuts', 'prodcuts\ProdcutsController');
     Route::resource('Prodcut',  'prodcuts\ProdcutController');
 
+    // rules and permision
+    Route::resource('Roles','roles\RoleController');
+    Route::resource('Users','users\UserController');
 
-        // rules and permision
-        Route::resource('Roles','roles\RoleController');
-        Route::resource('Users','users\UserController');
+    // reports
+    Route::get('Reports', 'reports\ReportInvoicesController@index');
+    Route::post('Search_invoices', 'reports\ReportInvoicesController@Search_invoices');
 
 });
 

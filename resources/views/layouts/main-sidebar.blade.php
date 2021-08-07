@@ -95,7 +95,7 @@
                         </svg><span class="side-menu__label">التقارير</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
                         @can('تقرير الفواتير')
-                            <li><a class="slide-item" href="{{ url('/' . ($page = 'invoices_report')) }}">تقارير الفواتير</a>
+                            <li><a class="slide-item" href="{{ url('/' . ($page = 'Reports')) }}">تقارير الفواتير</a>
                             </li>
                         @endcan
 
