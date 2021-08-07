@@ -55,9 +55,12 @@ Route::group([ 'namespace' => 'Admin' , 'middleware' => ['auth']  ] , function (
     Route::resource('Roles','roles\RoleController');
     Route::resource('Users','users\UserController');
 
-    // reports
+    // reports_invoices
     Route::get('Reports', 'reports\ReportInvoicesController@index');
     Route::post('Search_invoices', 'reports\ReportInvoicesController@Search_invoices');
+    // reports_customers
+    Route::get('customers_report', 'reports\CustomersReportController@index')->name("customers_report");
+    Route::post('Search_customers', 'reports\CustomersReportController@Search_customers');
 
 });
 
