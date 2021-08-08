@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\AddInvoice;
+use App\Notifications\notifactiondb;
+
 
 
 class InvoiceController extends Controller
@@ -76,8 +78,15 @@ class InvoiceController extends Controller
         }
 
         // send to mail
-        $user     = User::first();
-        Notification::send($user, new AddInvoice($invoice_id));
+        // $user     = User::first();
+        // Notification::send($user, new AddInvoice($invoice_id));
+
+
+        // notifaction add invoices dataase
+        $user       = User::get();
+        $invoices   = invoice::latest()->first();
+        Notification::send($user, new notifactiondb($invoices));
+
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return redirect('/Invoices');

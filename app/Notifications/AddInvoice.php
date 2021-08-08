@@ -23,7 +23,6 @@ class AddInvoice extends Notification
         return ['mail'];
     }
 
-
     public function toMail($notifiable)
     {
         // $url = 'http://127.0.0.1:8000/InvoicesDetails/'.$this->invoice_id;
