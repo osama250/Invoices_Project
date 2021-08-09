@@ -101,7 +101,7 @@
                                 <div class="main-img-user"><img alt=""
                                         src="{{ URL::asset('assets/img/faces/6.jpg') }}" class=""></div>
                                 <div class="mr-3 my-auto">
-                                    <h6>{{ Auth::user()->name }}</h6><span>{{ Auth::user()->email }}</span>
+                                    <h6>{{ username() }} </h6><span>{{ email() }}</span>
                                 </div>
                             </div>
                         </div>

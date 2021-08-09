@@ -62,8 +62,10 @@ Route::group([ 'namespace' => 'Admin' , 'middleware' => ['auth']  ] , function (
     Route::get('customers_report', 'reports\CustomersReportController@index')->name("customers_report");
     Route::post('Search_customers', 'reports\CustomersReportController@Search_customers');
 
+    // read otifactions
+    Route::get('MarkAsRead_all','invoices\InvoicesController@MarkAsRead_all')->name('MarkAsRead_all');
+
+
+    // Dashbord           Must Should Be Last
+    Route::get('/{page}', 'admin\AdminContrller@index');
 });
-
-
-// Dashbord           Must Should Be Last
-Route::get('/{page}', 'admin\AdminContrller@index');

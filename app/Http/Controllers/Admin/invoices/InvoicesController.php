@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\invoices;
 
 use App\Http\Controllers\Controller;
 use App\Models\invoice;
+use Illuminate\Http\Request;
 use App\Exports\InvociesExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -36,7 +37,17 @@ class InvoicesController extends Controller
 
     public function export()
     {
-        // echo 'Export';
         return Excel::download(new InvociesExport, 'Invoces.xlsx');
+    }
+
+    public function MarkAsRead_all (Request $request)
+    {
+        $userUnreadNotification = auth()->user()->unreadNotifications;
+
+        if($userUnreadNotification)
+        {
+            $userUnreadNotification->markAsRead();
+            return back();
+        }
     }
 }
