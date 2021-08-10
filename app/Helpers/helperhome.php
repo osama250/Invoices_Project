@@ -2,18 +2,17 @@
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\invoice;
-use App\User;
 
  function username()
  {
-    $name = Auth::user()->name;
-    return $name;
+      $name = Auth::user()->name;
+      return $name;
  }
 
  function email()
  {
-     $email = Auth::user()->email;
-     return $email;
+      $email = Auth::user()->email;
+      return $email;
  }
 
  function total_money()

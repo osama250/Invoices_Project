@@ -9,7 +9,7 @@ class SectionsTableSeeder extends Seeder
     {
         DB::table('sections')->insert( [
             [
-                'section_name'      =>'البنك الاهلى' ,
+                'section_name'      => 'البنك الاهلى' ,
                 'description'       => 'خدمات متميزة',
                 'Created_by'        => 'Osama',
                 'created_at'        => '2021-07-29 04:01:42'
