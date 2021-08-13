@@ -10,11 +10,11 @@ public function run()
     {
 
          $user = User::create([
-        'name'          =>'Osama' ,
-        'email'         => 'yousryosama63@gmail.com',
-        'password'      => bcrypt('osama_cs98'),
-        'roles_name'    => ["owner"],
-        'Status'        => 'مفعل',
+            'name'          =>'Osama' ,
+            'email'         => 'yousryosama63@gmail.com',
+            'password'      => bcrypt('osama_cs98'),
+            'roles_name'    => ["owner"],
+            'Status'        => 'مفعل',
         ]);
 
         $role          = Role::create(['name' => 'owner']);

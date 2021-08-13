@@ -69,13 +69,12 @@
     <div class="col-xl-12">
         <div class="card mg-b-20">
             <div class="card-header pb-0">
-                <div class="d-flex justify-content-between">
-                    {{-- @can('اضافة قسم') --}}
+                <div class="d-flex justify-content-between col-lg-3">
+                    @can('اضافة قسم')
                         <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale"
                             data-toggle="modal" href="#modaldemo8">اضافة قسم</a>
-                    {{-- @endcan --}}
+                    @endcan
                 </div>
-
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -98,19 +97,19 @@
                                     <td>{{ $x->section_name }}</td>
                                     <td>{{ $x->description }}</td>
                                     <td>
-                                        {{-- @can('تعديل قسم') --}}
+                                        @can('تعديل قسم')
                                             <a class="modal-effect btn btn-sm btn-success" data-effect="effect-scale"
                                                 data-id="{{ $x->id }}" data-section_name="{{ $x->section_name }}"
                                                 data-description="{{ $x->description }}" data-toggle="modal"
                                                 href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
-                                        {{-- @endcan --}}
+                                        @endcan
 
-                                        {{-- @can('حذف قسم') --}}
+                                        @can('حذف قسم')
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                 data-id="{{ $x->id }}" data-section_name="{{ $x->section_name }}"
                                                 data-toggle="modal" href="#modaldemo9" title="حذف"><i
                                                     class="las la-trash"></i></a>
-                                        {{-- @endcan --}}
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
@@ -121,7 +120,7 @@
         </div>
     </div>
 
-    {{-- modle add section  --}}
+    {{-- modle add section --}}
     <div class="modal" id="modaldemo8">
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-demo">
@@ -167,7 +166,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                        {{-- not use route to ot send id parameter   --}}
+                    {{-- not use route to ot send id parameter --}}
                     <form action='Section/update' method="post" autocomplete="off">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
@@ -244,21 +243,20 @@
 <script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
 <script src="{{ URL::asset('assets/js/modal.js') }}"></script>
 
-{{-- get data to section when edit  --}}
+{{-- get data to section when edit --}}
 <script>
     $('#exampleModal2').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
-        var id           = button.data('id')
+        var id = button.data('id')
         var section_name = button.data('section_name')
-        var description  = button.data('description')
+        var description = button.data('description')
         var modal = $(this)
         modal.find('.modal-body #id').val(id);
         modal.find('.modal-body #section_name').val(section_name);
         modal.find('.modal-body #description').val(description);
     })
-
 </script>
-{{-- to delete section  --}}
+{{-- to delete section --}}
 <script>
     $('#modaldemo9').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
@@ -268,7 +266,6 @@
         modal.find('.modal-body #id').val(id);
         modal.find('.modal-body #section_name').val(section_name);
     })
-
 </script>
 
 @endsection

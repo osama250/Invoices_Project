@@ -5,20 +5,15 @@ namespace App\Http\Controllers\Admin\sections;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\http\Requests\SectionRequest;
 use App\Models\section;
 
 class SectionController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(SectionRequest $request)
     {
-        $validatedData = $request->validate([
-            'section_name'          => 'required|unique:sections|max:255',
-        ],[
-
-            'section_name.required' =>'يرجي ادخال اسم القسم',
-            'section_name.unique'   =>'اسم القسم مسجل مسبقا',
-        ]);
+        $validatedData = $request->validate();
 
             section::create([
                 'section_name' => $request->section_name,

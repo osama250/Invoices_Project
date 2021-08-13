@@ -4,14 +4,16 @@ namespace App\Http\Controllers\Admin\prodcuts;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProdcutRequest;
 use App\Models\prodcut;
 use App\Models\section;
 
 class ProdcutController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(ProdcutRequest $request)
     {
+        $validate = $request->validate();
         prodcut::create([
             'Product_name'  => $request->Product_name,
             'section_id'    => $request->section_id,

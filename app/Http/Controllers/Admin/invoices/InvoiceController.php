@@ -12,6 +12,7 @@ use App\Models\invoice_attachments;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Http\Requests\InvoicesRequest;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\AddInvoice;
 use App\Notifications\notifactiondb;
@@ -27,8 +28,9 @@ class InvoiceController extends Controller
         return view('invoices.add_invoice', compact('sections'));
     }
 
-    public function store(Request $request)
+    public function store( InvoicesRequest $request)
     {
+        $validate = $request->validate();
         invoice::create([
             'invoice_number'        => $request->invoice_number,
             'invoice_Date'          => $request->invoice_Date,
@@ -227,9 +229,7 @@ class InvoiceController extends Controller
     public function open_file( $invoice_number,$file_name )
     {
          $files = Storage::disk('public_uploads')->getDriver()
-        ->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
-
-        // $files = Storage::disk('public_uploads' , $invoice_number.'/'.$file_name);
+            ->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
         return response()->file($files);
     }
 
@@ -237,9 +237,7 @@ class InvoiceController extends Controller
 
     {
         $attachments = Storage::disk('public_uploads')->getDriver()
-        ->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
-
-        // $attachments = Storage::disk('public_uploads' , $invoice_number.'/'.$file_name);
+            ->getAdapter()->applyPathPrefix($invoice_number.'/'.$file_name);
         return response()->download( $attachments );
     }
 

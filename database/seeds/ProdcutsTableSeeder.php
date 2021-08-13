@@ -25,7 +25,7 @@ class ProdcutsTableSeeder extends Seeder
                 'section_id'        => 2
             ] ,
             [
-                'Product_name'      =>'خدمات تحويل لجميع الدول' ,
+                'Product_name'      => 'خدمات تحويل لجميع الدول' ,
                 'description'       => 'تحويل الى اى دولة ',
                 'section_id'        => 3
             ]

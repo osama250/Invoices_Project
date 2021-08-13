@@ -9,15 +9,29 @@ class Invoices_DetailTableSeeder extends Seeder
     public function run()
     {
         DB::table('invoice_details')->insert( [
-            'id_Invoice'        => 1 ,
-            'invoice_number'    => 'as88',
-            'product'           => 'بطاقات الاهلى' ,
-            'Section'           => 1 ,
-            'Status'            => 'غير مدفوعة' ,
-            'Value_Status'      => 2 ,
-            'note'              => 'جميع الخدمات عبر الانترنت من منزلك ' ,
-            'user'              => 'Osama' ,
-            'created_at'        => '2021-08-1 04:01:42'
+            [
+                'id_Invoice'        => 1 ,
+                'invoice_number'    => 'as88',
+                'product'           => 'بطاقات الاهلى' ,
+                'Section'           => 1 ,
+                'Status'            => 'مدفوعة' ,
+                'Value_Status'      => 1 ,
+                'note'              => 'جميع الخدمات عبر الانترنت من منزلك ' ,
+                'user'              => 'Osama' ,
+                'created_at'        => '2021-08-1 04:01:42'
+            ] ,
+            [
+                'id_Invoice'        => 2 ,
+                'invoice_number'    => 'as99',
+                'product'           => 'بطاقات الاهلى' ,
+                'Section'           => 1 ,
+                'Status'            => 'غير مدفوعة' ,
+                'Value_Status'      => 2 ,
+                'note'              => 'جميع الخدمات عبر الانترنت من منزلك ' ,
+                'user'              => 'Osama' ,
+                'created_at'        => '2021-08-13 04:01:42'
+            ]
+
         ]);
     }
 }
